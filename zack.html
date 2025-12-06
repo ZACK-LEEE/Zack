@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zack | About Me</title>
+    
+    <!-- Google Fonts - Poppins for a modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        /* --- Basic Setup & Theme --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #ff85a2;
+            position: relative;
+        }
+
+        /* --- Premium Animated Background --- */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, #ff9a9e, #fecfef, #fecfef, #fad0c4);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -2;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- Beautiful Autumn Leaves Animation --- */
+        #leaf-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        .leaf1 { background-color: #ff6347; border-radius: 0 100% 0 100%; }
+        .leaf2 { background-color: #ffd700; border-radius: 100% 0 100% 0; }
+        .leaf3 { background-color: #ff8c00; border-radius: 50% 0 50% 0; }
+        .leaf4 { background-color: #dc143c; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
+        .leaf5 { background-color: #b22222; border-radius: 50% 50% 50% 0; }
+
+        @keyframes fall {
+            0% { top: -10vh; transform: translateX(0) rotate(0deg); opacity: 1; }
+            25% { transform: translateX(50px) rotate(90deg); }
+            50% { transform: translateX(-50px) rotate(180deg); }
+            75% { transform: translateX(80px) rotate(270deg); }
+            100% { top: 110vh; transform: translateX(100px) rotate(360deg); opacity: 0.3; }
+        }
+
+        /* --- Main About Card --- */
+        .about-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            text-align: center;
+            max-width: 700px;
+            width: 90%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 20px;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.45);
+        }
+
+        /* --- Profile Image Styling --- */
+        .profile-img {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 25px rgba(255, 105, 180, 0.6);
+            margin-bottom: 25px;
+            transition: transform 0.4s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05) rotate(3deg);
+        }
+
+        /* --- Section Box Styling --- */
+        .section-box {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4a0e2a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            font-size: 1.2rem;
+        }
+
+        /* --- Bio Text Styling --- */
+        .bio-text p {
+            color: #5a1e36;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 8px;
+        }
+
+        /* --- Skills Section Styling --- */
+        .skills-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .skill-btn {
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: default;
+            width: 130px;
+            height: 130px;
+            overflow: hidden;
+        }
+
+        .skill-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-btn:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .skill-btn:hover img {
+            transform: scale(1.1);
+        }
+
+        /* --- Premium Instagram Button --- */
+        .instagram-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(188, 24, 136, 0.4);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .instagram-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .instagram-btn:hover::before {
+            left: 100%;
+        }
+
+        .instagram-btn i {
+            font-size: 1.4rem;
+        }
+
+        .instagram-btn:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(188, 24, 136, 0.6);
+        }
+
+        /* --- Responsive Design for Mobile --- */
+        @media (max-width: 480px) {
+            .about-card {
+                padding: 30px 20px;
+            }
+            .profile-img {
+                width: 140px;
+                height: 140px;
+            }
+            .bio-text p {
+                font-size: 0.95rem;
+            }
+            .section-title {
+                font-size: 1.3rem;
+            }
+            .skill-btn {
+                width: 90px;
+                height: 90px;
+            }
+            .instagram-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Beautiful Autumn Leaves Container -->
+    <div id="leaf-container"></div>
+
+    <div class="about-card">
+        <!-- UPDATED: Zack's Profile Image (New Working Link) -->
+        <img src="https://files.catbox.moe/v456ih.jpg" alt="Zack" class="profile-img">
+
+        <!-- Bio Section -->
+        <div class="section-box">
+            <h2 class="section-title"><i class="fas fa-user"></i> Bio</h2>
+            <div class="bio-text">
+                <p>𝐇𝐞𝐲 👋🏻 𝐈'𝐦 𝐙𝐚𝐜𝐤</p>
+                <p>𝐈'𝐦 𝐅𝐫𝐨𝐦 𝐈𝐧𝐝𝐢𝐚 (𝐉𝐡𝐚𝐫𝐤𝐡𝐚𝐧𝐝)</p>
+                <p>𝐈'𝐦 𝐚 𝐜𝐨𝐥𝐥𝐞𝐠𝐞 𝐬𝐭𝐮𝐝𝐞𝐧𝐭👨🏻‍🎓</p>
+                <p>𝐀𝐠𝐞 : 𝟏𝟗</p>
+                <p>𝐇𝐨𝐛𝐛𝐢𝐞𝐬 : 𝐰𝐚𝐭𝐜𝐡𝐢𝐧𝐠 𝐚𝐧𝐢𝐦𝐞𝐬 & 𝐦𝐨𝐯𝐢𝐞 𝐫𝐞𝐚𝐝𝐢𝐧𝐠 𝐜𝐨𝐦𝐢𝐜𝐬/ 𝐰𝐞𝐛𝐭𝐨𝐨𝐧📖</p>
+            </div>
+        </div>
+
+        <!-- UPDATED: My Skills Section with All Working Logos -->
+        <div class="section-box">
+            <h2 class="section-title"><i class="fas fa-gamepad"></i> My skills 😎</h2>
+            <div class="skills-container">
+                <!-- UPDATED: Free Fire (New Working Link) -->
+                <div class="skill-btn"><img src="https://files.catbox.moe/j3qyrd.jpg" alt="Free Fire"></div>
+                <!-- UPDATED: COD (New Working Link) -->
+                <div class="skill-btn"><img src="https://files.catbox.moe/nmqp4c.jpg" alt="COD"></div>
+                <!-- These were already working -->
+                <div class="skill-btn"><img src="https://files.catbox.moe/z4929y.jpg" alt="GTA 5"></div>
+                <div class="skill-btn"><img src="https://files.catbox.moe/so1zfo.jpg" alt="RE8"></div>
+                <div class="skill-btn"><img src="https://files.catbox.moe/j8ylwv.jpg" alt="RDR2"></div>
+                <div class="skill-btn"><img src="https://files.catbox.moe/k0p6ph.jpg" alt="The Last of Us"></div>
+            </div>
+        </div>
+
+        <!-- Instagram Button -->
+        <a href="https://www.instagram.com/zackk_lee/" target="_blank" class="instagram-btn">
+            <i class="fab fa-instagram"></i>
+            Instagram
+        </a>
+    </div>
+
+    <!-- JavaScript for Beautiful Autumn Leaves Animation -->
+    <script>
+        const leafContainer = document.getElementById('leaf-container');
+        const leafCount = 30;
+        const leafTypes = ['leaf1', 'leaf2', 'leaf3', 'leaf4', 'leaf5'];
+
+        for (let i = 0; i < leafCount; i++) {
+            const leaf = document.createElement('div');
+            const randomLeafType = leafTypes[Math.floor(Math.random() * leafTypes.length)];
+            leaf.className = `leaf ${randomLeafType}`;
+            
+            const animationDuration = Math.random() * 10 + 10;
+            const animationDelay = Math.random() * 10;
+            const startPosition = Math.random() * 100;
+            const size = Math.random() * 10 + 10;
+
+            leaf.style.left = `${startPosition}vw`;
+            leaf.style.animationDuration = `${animationDuration}s`;
+            leaf.style.animationDelay = `${animationDelay}s`;
+            leaf.style.width = `${size}px`;
+            leaf.style.height = `${size}px`;
+            
+            leafContainer.appendChild(leaf);
+        }
+    </script>
+
+</body>
+</html>
